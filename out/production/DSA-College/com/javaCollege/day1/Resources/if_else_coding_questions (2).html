@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-900 text-slate-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>If-Else Conditional Logic - Real World Coding Questions</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="min-h-full flex flex-col font-sans antialiased bg-slate-900 text-slate-100 selection:bg-sky-500 selection:text-white">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-900/80 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-sky-500/10 border border-sky-500/20 rounded-xl text-sky-400">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold bg-gradient-to-r from-white via-slate-200 to-sky-400 bg-clip-text text-transparent">
+                        DSA Practice Bank
+                    </h1>
+                    <p class="text-xs text-slate-400">Topic 01: If-Else & Conditional Control Flow</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                    3 Story Questions
+                </span>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    Python / C++ / Java
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row gap-8">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="w-full md:w-64 shrink-0 space-y-4">
+            <div class="sticky top-24 bg-slate-800/40 border border-slate-800 rounded-2xl p-4 backdrop-blur-sm">
+                <h2 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3 px-2">Questions List</h2>
+                <nav class="space-y-1" id="question-nav">
+                    <button onclick="scrollToQuestion('q1')" class="w-full text-left px-3 py-2.5 rounded-xl text-sm font-medium transition-all flex items-center justify-between text-sky-400 bg-sky-500/10 border border-sky-500/20 hover:bg-sky-500/20">
+                        <span class="truncate">1. Café Happy Hour</span>
+                        <span class="text-xs px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">Medium</span>
+                    </button>
+                    <button onclick="scrollToQuestion('q2')" class="w-full text-left px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all flex items-center justify-between border border-transparent">
+                        <span class="truncate">2. GizmoHub Shipping</span>
+                        <span class="text-xs px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">Medium</span>
+                    </button>
+                    <button onclick="scrollToQuestion('q3')" class="w-full text-left px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all flex items-center justify-between border border-transparent">
+                        <span class="truncate">3. CityCab Dynamic Fare</span>
+                        <span class="text-xs px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">Hard</span>
+                    </button>
+                </nav>
+
+                <div class="mt-6 pt-4 border-t border-slate-800/80">
+                    <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 px-2">Key Concepts</h3>
+                    <ul class="text-xs text-slate-400 space-y-2 px-2">
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+                            Nested Conditional Logic
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                            Boolean Compound Conditions
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
+                            Edge Case Validation
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                            Floating-Point Precision
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Question Content Area -->
+        <div class="flex-1 space-y-12">
+
+            <!-- QUESTION 1 CARD -->
+            <section id="q1" class="scroll-mt-24 bg-slate-800/30 border border-slate-800 rounded-3xl p-6 sm:p-8 backdrop-blur-sm relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-sky-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+                <!-- Header Badge -->
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                    <div class="flex items-center gap-2">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                            Problem 01
+                        </span>
+                        <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700">
+                            Decision Trees & Discounts
+                        </span>
+                    </div>
+                    <span class="text-xs text-slate-400 font-mono">15-20 Lines Code Solution</span>
+                </div>
+
+                <h2 class="text-2xl font-bold text-white mb-4">The Cafe "Happy Hour" Loyalty Billing System</h2>
+
+                <!-- Story Section -->
+                <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 mb-6">
+                    <h3 class="text-xs font-semibold text-sky-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                        Story & Business Scenario
+                    </h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Maya owns a bustling neighborhood café called <em>The Daily Grind</em>. To attract more customers and reward regular visitors, she wants to install a smart point-of-sale system. The system automatically calculates final bill discounts based on a customer's loyalty tier, whether it is currently "Happy Hour", and the total bill amount.
+                    </p>
+                </div>
+
+                <!-- Business Rules -->
+                <div class="mb-6">
+                    <h3 class="text-sm font-semibold text-white mb-3">Business Rules & Logic Requirements:</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4">
+                            <span class="text-xs font-bold text-sky-400 block mb-1">VIP Members</span>
+                            <comment-tag id="1"><ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+                                </br>>Get <strong>15% discount</strong> standard.
+                                </br>>During Happy Hour: get extra 10% off (total <strong>25% discount</strong>).
+                            </ul></comment-tag id="1" text="The list items use raw '/>' characters instead of standard semantic '<li>' tags. Rebuilding this with proper '<li>' tags fixes broken bullet rendering across browsers.
+
+Example:
+<ul class='text-xs text-slate-300 space-y-1.5 list-disc list-inside'>
+    <li>Get <strong>15% discount</strong> standard.</li>
+    <li>During Happy Hour: get extra 10% off (total <strong>25% discount</strong>).</li>
+</ul>" type="suggestion">
+                        </div>
+                        <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4">
+                            <span class="text-xs font-bold text-amber-400 block mb-1">Regular Members</span>
+                            <comment-tag id="2"><ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+                                </br>>Bill &gt; $20: get <strong>10% discount</strong>.
+                                </br>>Happy Hour AND Bill &gt; $20: get <strong>15% discount</strong>.
+                                </br>>Bill &le; $20: <strong>No discount</strong> (0%).
+                            </ul></comment-tag id="2" text="The regular member list uses malformed text prefixes ('/>') instead of HTML '<li>' tags. Replacing these with proper '<li>' tags ensures clean bullet point alignment and valid HTML structure.
+
+Example:
+<ul class='text-xs text-slate-300 space-y-1.5 list-disc list-inside'>
+    <li>Bill &gt; $20: get <strong>10% discount</strong>.</li>
+    <li>Happy Hour AND Bill &gt; $20: get <strong>15% discount</strong>.</li>
+    <li>Bill &le; $20: <strong>No discount</strong> (0%).</li>
+</ul>" type="suggestion">
+                        </div>
+                        <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4">
+                            <span class="text-xs font-bold text-emerald-400 block mb-1">Guest Customers</span>
+                            <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+                                </br>>No percentage discount.
+                                </br>>If Happy Hour AND Bill &gt; $50: flat <strong>$5.00 off</strong>.
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Playground -->
+                <div class="bg-slate-900/80 border border-sky-500/30 rounded-2xl p-5 mb-8">
+                    <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
+                        <h3 class="text-xs font-bold text-sky-400 uppercase tracking-wider flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            Live Logic Simulator (Try Inputs)
+                        </h3>
+                        <span class="text-xs text-slate-400">Tests logic instantly</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Membership</label>
+                            <select id="q1-membership" onchange="runQ1Simulator()" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-sky-500">
+                                <option value="VIP">VIP</option>
+                                <option value="Regular">Regular</option>
+                                <option value="Guest">Guest</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Bill Amount ($)</label>
+                            <input type="number" id="q1-bill" value="40" oninput="runQ1Simulator()" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-sky-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Happy Hour?</label>
+                            <select id="q1-happyhour" onchange="runQ1Simulator()" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-sky-500">
+                                <option value="true">True (Yes)</option>
+                                <option value="false">False (No)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-950 rounded-xl p-4 flex items-center justify-between border border-slate-800">
+                        <span class="text-xs text-slate-400 font-mono">Output Result:</span>
+                        <div class="text-right">
+                            <span class="text-lg font-bold text-emerald-400 font-mono" id="q1-output">$30.00</span>
+                            <p class="text-xs text-slate-400 font-mono" id="q1-breakdown">VIP Discount 25% Applied</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code Solution Tabs -->
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Solution Implementation</h3>
+                        <div class="flex gap-2" id="q1-lang-tabs">
+                            <button onclick="switchLang('q1', 'pseudo')" class="q1-btn px-3 py-1 rounded-lg text-xs font-mono bg-sky-500/20 text-sky-400 border border-sky-500/30">Pseudocode</button>
+                            <button onclick="switchLang('q1', 'python')" class="q1-btn px-3 py-1 rounded-lg text-xs font-mono bg-slate-800 text-slate-400 border border-slate-700 hover:text-white">Python</button>
+                            <button onclick="switchLang('q1', 'cpp')" class="q1-btn px-3 py-1 rounded-lg text-xs font-mono bg-slate-800 text-slate-400 border border-slate-700 hover:text-white">C++</button>
+                            <button onclick="switchLang('q1', 'java')" class="q1-btn px-3 py-1 rounded-lg text-xs font-mono bg-slate-800 text-slate-400 border border-slate-700 hover:text-white">Java</button>
+                        </div>
+                    </div>
+
+                    <!-- Pseudocode Snippet -->
+                    <div id="q1-code-pseudo" class="q1-code-block font-mono text-xs bg-slate-950 border border-slate-800 rounded-xl p-4 overflow-x-auto text-slate-300">
+<pre><code><span class="text-purple-400">FUNCTION</span> <span class="text-blue-400">calculate_cafe_bill</span>(membership_type, bill_amount, is_happy_hour):
+    <span class="text-purple-400">SET</span> discount_rate = <span class="text-emerald-400">0.0</span>
+    <span class="text-purple-400">SET</span> flat_discount = <span class="text-emerald-400">0.0</span>
+
+    <span class="text-purple-400">IF</span> membership_type <span class="text-sky-400">IS EQUAL TO</span> <span class="text-amber-300">"VIP"</span> <span class="text-purple-400">THEN</span>
+        <span class="text-purple-400">IF</span> is_happy_hour <span class="text-sky-400">IS TRUE</span> <span class="text-purple-400">THEN</span>
+            <span class="text-purple-400">SET</span> discount_rate = <span class="text-emerald-400">0.25</span>
+        <span class="text-purple-400">ELSE</span>
+            <span class="text-purple-400">SET</span> discount_rate = <span class="text-emerald-400">0.15</span>
+        <span class="text-purple-400">END IF</span>
+
+    <span class="text-purple-400">ELSE IF</span> membership_type <span class="text-sky-400">IS EQUAL TO</span> <span class="text-amber-300">"Regular"</span> <span class="text-purple-400">THEN</span>
+        <span class="text-purple-400">IF</span> bill_amount &gt; <span class="text-emerald-400">20</span> <span class="text-purple-400">THEN</span>
+            <span class="text-purple-400">IF</span> is_happy_hour <span class="text-sky-400">IS TRUE</span> <span class="text-purple-400">THEN</span>
+                <span class="text-purple-400">SET</span> discount_rate = <span class="text-emerald-400">0.15</span>
+            <span class="text-purple-400">ELSE</span>
+                <span class="text-purple-400">SET</span> discount_rate = <span class="text-emerald-400">0.10</span>
+            <span class="text-purple-400">END IF</span>
+        <span class="text-purple-400">ELSE</span>
+            <span class="text-purple-400">SET</span> discount_rate = <span class="text-emerald-400">0.0</span>
+        <span class="text-purple-400">END IF</span>
+
+    <span class="text-purple-400">ELSE IF</span> membership_type <span class="text-sky-400">IS EQUAL TO</span> <span class="text-amber-300">"Guest"</span> <span class="text-purple-400">THEN</span>
+        <span class="text-purple-400">IF</span> is_happy_hour <span class="text-sky-400">IS TRUE</span> <span class="text-purple-400">AND</span> bill_amount &gt; <span class="text-emerald-400">50</span> <span class="text-purple-400">THEN</span>
+            <span class="text-purple-400">SET</span> flat_discount = <span class="text-emerald-400">5.0</span>
+        <span class="text-purple-400">END IF</span>
+    <span class="text-purple-400">END IF</span>
+
+    <span class="text-purple-400">SET</span> final_bill = (bill_amount * (<span class="text-emerald-400">1.0</span> - discount_rate)) - flat_discount
+    <span class="text-purple-400">RETURN</span> <span class="text-blue-400">ROUND</span>(final_bill, <span class="text-emerald-400">2</span>)
+<span class="text-purple-400">END FUNCTION</span></code></pre>
+                    </div>
+
+                    <!-- Python Snippet -->
+                    <div id="q1-code-python" class="q1-code-block hidden font-mono text-xs bg-slate-950 border border-slate-800 rounded-xl p-4 overflow-x-auto text-slate-300">
+<pre><code><span class="text-purple-400">def</span> <span class="text-blue-400">calculate_cafe_bill</span>(membership_type, bill_amount, is_happy_hour):
+    discount_rate = <span class="text-emerald-400">0.0</span>
+    flat_discount = <span class="text-emerald-400">0.0</span>
+
+    <span class="text-purple-400">if</span> membership_type == <span class="text-amber-300">"VIP"</span>:
+        <span class="text-purple-400">if</span> is_happy_hour:
+            discount_rate = <span class="text-emerald-400">0.25</span>
+        <span class="text-purple-400">else</span>:
+            discount_rate = <span class="text-emerald-400">0.15</span>
+
+    <span class="text-purple-400">elif</span> membership_type == <span class="text-amber-300">"Regular"</span>:
+        <span class="text-purple-400">if</span> bill_amount &gt; <span class="text-emerald-400">20.0</span>:
+            <span class="text-purple-400">if</span> is_happy_hour:
+                discount_rate = <span class="text-emerald-400">0.15</span>
+            <span class="text-purple-400">else</span>:
+                discount_rate = <span class="text-emerald-400">0.10</span>
+        <span class="text-purple-400">else</span>:
+            discount_rate = <span class="text-emerald-400">0.0</span>
+
+    <span class="text-purple-400">elif</span> membership_type == <span class="text-amber-300">"Guest"</span>:
+        <span class="text-purple-400">if</span> is_happy_hour <span class="text-purple-400">and</span> bill_amount &gt; <span class="text-emerald-400">50.0</span>:
+            flat_discount = <span class="text-emerald-400">5.0</span>
+
+    final_bill = (bill_amount * (<span class="text-emerald-400">1.0</span> - discount_rate)) - flat_discount
+    <span class="text-purple-400">return</span> <span class="text-blue-400">round</span>(final_bill, <span class="text-emerald-400">2</span>)</code></pre>
+                    </div>
+
+                    <!-- C++ Snippet -->
+                    <div id="q1-code-cpp" class="q1-code-block hidden font-mono text-xs bg-slate-950 border border-slate-800 rounded-xl p-4 overflow-x-auto text-slate-300">
+<pre><code><span class="text-purple-400">double</span> <span class="text-blue-400">calculateCafeBill</span>(std::string membershipType, <span class="text-purple-400">double</span> billAmount, <span class="text-purple-400">bool</span> isHappyHour) {
+    <span class="text-purple-400">double</span> discountRate = <span class="text-emerald-400">0.0</span>;
+    <span class="text-purple-400">double</span> flatDiscount = <span class="text-emerald-400">0.0</span>;
+
+    <span class="text-purple-400">if</span> (membershipType == <span class="text-amber-300">"VIP"</span>) {
+        discountRate = isHappyHour ? <span class="text-emerald-400">0.25</span> : <span class="text-emerald-400">0.15</span>;
+    } <span class="text-purple-400">else if</span> (membershipType == <span class="text-amber-300">"Regular"</span>) {
+        <span class="text-purple-400">if</span> (billAmount &gt; <span class="text-emerald-400">20.0</span>) {
+            discountRate = isHappyHour ? <span class="text-emerald-400">0.15</span> : <span class="text-emerald-400">0.10</span>;
+        }
+    } <span class="text-purple-400">else if</span> (membershipType == <span class="text-amber-300">"Guest"</span>) {
+        <span class="text-purple-400">if</span> (isHappyHour &amp;&amp; billAmount &gt; <span class="text-emerald-400">50.0</span>) {
+            flatDiscount = <span class="text-emerald-400">5.0</span>;
+        }
+    }
+
+    <span class="text-purple-400">return</span> (billAmount * (<span class="text-emerald-400">1.0</span> - discountRate)) - flatDiscount;
+}</code></pre>
+                    </div>
+
+                    <!-- Java Snippet -->
+                    <div id="q1-code-java" class="q1-code-block hidden font-mono text-xs bg-slate-950 border border-slate-800 rounded-xl p-4 overflow-x-auto text-slate-300">
+<pre><code><span class="text-purple-400">public static double</span> <span class="text-blue-400">calculateCafeBill</span>(String membershipType, <span class="text-purple-400">double</span> billAmount, <span class="text-purple-400">boolean</span> isHappyHour) {
+    <span class="text-purple-400">double</span> discountRate = <span class="text-emerald-400">0.0</span>;
+    <span class="text-purple-400">double</span> flatDiscount = <span class="text-emerald-400">0.0</span>;
+
+    <span class="text-purple-400">if</span> (membershipType.equalsIgnoreCase(<span class="text-amber-300">"VIP"</span>)) {
+        discountRate = isHappyHour ? <span class="text-emerald-400">0.25</span> : <span class="text-emerald-400">0.15</span>;
+    } <span class="text-purple-400">else if</span> (membershipType.equalsIgnoreCase(<span class="text-amber-300">"Regular"</span>)) {
+        <span class="text-purple-400">if</span> (billAmount &gt; <span class="text-emerald-400">20.0</span>) {
+            discountRate = isHappyHour ? <span class="text-emerald-400">0.15</span> : <span class="text-emerald-400">0.10</span>;
+        }
+    } <span class="text-purple-400">else if</span> (membershipType.equalsIgnoreCase(<span class="text-amber-300">"Guest"</span>)) {
+        <span class="text-purple-400">if</span> (isHappyHour &amp;&amp; billAmount &gt; <span class="text-emerald-400">50.0</span>) {
+            flatDiscount = <span class="text-emerald-400">5.0</span>;
+        }
+    }
+
+    <span class="text-purple-400">return</span> (billAmount * (<span class="text-emerald-400">1.0</span> - discountRate)) - flatDiscount;
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- QUESTION 2 CARD -->
+            <section id="q2" class="scroll-mt-24 bg-slate-800/30 border border-slate-800 rounded-3xl p-6 sm:p-8 backdrop-blur-sm relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+                <!-- Header Badge -->
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                    <div class="flex items-center gap-2">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                            Problem 02
+                        </span>
+                        <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700">
+                            Nested Multi-Branch Conditions
+                        </span>
+                    </div>
+                    <span class="text-xs text-slate-400 font-mono">15-22 Lines Code Solution</span>
+                </div>
+
+                <h2 class="text-2xl font-bold text-white mb-4">GizmoHub Smart Shipping Engine</h2>
+
+                <!-- Story Section -->
+                <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 mb-6">
+                    <h3 class="text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                        Story & Business Scenario
+                    </h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Alex manages an e-commerce platform called <em>GizmoHub</em>. Shipping rates are getting complicated because foreign deliveries, heavy packages, express upgrades, and free-shipping order thresholds all interact differently. Alex needs an automated decision tree to calculate shipping costs accurately for every checkout order.
+                    </p>
+                </div>
+
+                <!-- Business Rules -->
+                <div class="mb-6">
+                    <h3 class="text-sm font-semibold text-white mb-3">Business Rules & Logic Requirements:</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4">
+                            <span class="text-xs font-bold text-sky-400 block mb-1">Domestic Orders</span>
+                            <comment-tag id="3"><ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+                                </br>>Order Total &ge; $100: <strong>Free Base Shipping ($0)</strong>.
+                                </br>>Order Total &lt; $100:
+                                    <ul class="pl-4 list-circle">
+                                        </br>>Weight &le; 2 kg: <strong>$5.00</strong> base fee.
+                                        </br>>Weight &gt; 2 kg: <strong>$5.00 + $2.00 per extra kg</strong>.
+                                    </ul>
+                                </br>>If Express: Add <strong>+$8.00</strong> fee (applies even on free shipping).
+                            </ul></comment-tag id="3" text="The nested list markup for domestic shipping rules is malformed, mixing raw '/>' indicators with direct un-nested '<ul>' elements. Converting to structured '<li>' elements with clean indentations prevents browser layout bugs.
+
+Example:
+<ul class='text-xs text-slate-300 space-y-1.5 list-disc list-inside'>
+    <li>Order Total &ge; $100: <strong>Free Base Shipping ($0)</strong>.</li>
+    <li>Order Total &lt; $100:
+        <ul class='pl-4 mt-1 space-y-1 list-circle list-inside'>
+            <li>Weight &le; 2 kg: <strong>$5.00</strong> base fee.</li>
+            <li>Weight &gt; 2 kg: <strong>$5.00 + $2.00 per extra kg</strong>.</li>
+        </ul>
+    </li>
+    <li>If Express: Add <strong>+$8.00</strong> fee.</li>
+</ul>" type="suggestion">
+                        </div>
+                        <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4">
+                            <span class="text-xs font-bold text-purple-400 block mb-1">International Orders</span>
+                            <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+                                </br>>Weight &le; 5 kg: <strong>$25.00</strong> base fee.
+                                </br>>Weight &gt; 5 kg: <strong>$25.00 + $5.00 per extra kg</strong> above 5 kg.
+                                </br>>If Express: Add extra <strong>+$20.00</strong> handling fee.
+                                </br>>No standard free shipping for international orders.
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Playground -->
+                <div class="bg-slate-900/80 border border-emerald-500/30 rounded-2xl p-5 mb-8">
+                    <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
+                        <h3 class="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            Live Logic Simulator (Try Inputs)
+                        </h3>
+                        <span class="text-xs text-slate-400">Tests logic instantly</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Destination</label>
+                            <select id="q2-dest" onchange="runQ2Simulator()" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500">
+                                <option value="Domestic">Domestic</option>
+                                <option value="International">International</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Weight (kg)</label>
+                            <input type="number" id="q2-weight" value="4.0" oninput="runQ2Simulator()" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Express Delivery?</label>
+                            <select id="q2-express" onchange="runQ2Simulator()" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500">
+                                <option value="true">True (Express)</option>
+                                <option value="false">False (Standard)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Order Total ($)</label>
+                            <input type="number" id="q2-total" value="50" oninput="runQ2Simulator()" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500">
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-950 rounded-xl p-4 flex items-center justify-between border border-slate-800">
+                        <span class="text-xs text-slate-400 font-mono">Calculated Shipping Fee:</span>
+                        <div class="text-right">
+                            <span class="text-lg font-bold text-emerald-400 font-mono" id="q2-output">$17.00</span>
+                            <p class="text-xs text-slate-400 font-mono" id="q2-breakdown">Base $9.00 + Express $8.00</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code Solution Tabs -->
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Solution Implementation</h3>
+                        <div class="flex gap-2" id="q2-lang-tabs">
+                            <button onclick="switchLang('q2', 'pseudo')" class="q2-btn px-3 py-1 rounded-lg text-xs font-mono bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Pseudocode</button>
+                            <button onclick="switchLang('q2', 'python')" class="q2-btn px-3 py-1 rounded-lg text-xs font-mono bg-slate-800 text-slate-400 border border-slate-700 hover:text-white">Python</button>
+                            <button onclick="switchLang('q2', 'cpp')" class="q2-btn px-3 py-1 rounded-lg text-xs font-mono bg-slate-800 text-slate-400 border border-slate-700 hover:text-white">C++</button>
+                            <button onclick="switchLang('q2', 'java')" class="q2-btn px-3 py-1 rounded-lg text-xs font-mono bg-slate-800 text-slate-400 border border-slate-700 hover:text-white">Java</button>
+                        </div>
+                    </div>
+
+                    <!-- Pseudocode Snippet -->
+                    <div id="q2-code-pseudo" class="q2-code-block font-mono text-xs bg-slate-950 border border-slate-800 rounded-xl p-4 overflow-x-auto text-slate-300">
+<pre><code><span class="text-purple-400">FUNCTION</span> <span class="text-blue-400">calculate_shipping_fee</span>(destination, weight, is_express, order_total):
+    <span class="text-purple-400">SET</span> shipping_fee = <span class="text-emerald-400">0.0</span>
+
+    <span class="text-purple-400">IF</span> destination <span class="text-sky-400">IS EQUAL TO</span> <span class="text-amber-300">"Domestic"</span> <span class="text-purple-400">THEN</span>
+        <span class="text-purple-400">IF</span> order_total &gt;= <span class="text-emerald-400">100</span> <span class="text-purple-400">THEN</span>
+            <span class="text-purple-400">SET</span> shipping_fee = <span class="text-emerald-400">0.0</span>
+        <span class="text-purple-400">ELSE</span>
+            <span class="text-purple-400">IF</span> weight &lt;= <span class="text-emerald-400">2</span> <span class="text-purple-400">THEN</span>
+                <span class="text-purple-400">SET</span> shipping_fee = <span class="text-emerald-400">5.0</span>
+            <span class="text-purple-400">ELSE</span>
+                <span class="text-purple-400">SET</span> extra_weight = weight - <span class="text-emerald-400">2</span>
+                <span class="text-purple-400">SET</span> shipping_fee = <span class="text-emerald-400">5.0</span> + (extra_weight * <span class="text-emerald-400">2.0</span>)
+            <span class="text-purple-400">END IF</span>
+        <span class="text-purple-400">END IF</span>
+
+        <span class="text-purple-400">IF</span> is_express <span class="text-sky-400">IS TRUE</span> <span class="text-purple-400">THEN</span>
+            <span class="text-purple-400">SET</span> shipping_fee = shipping_fee + <span class="text-emerald-400">8.0</span>
+        <span class="text-purple-400">END IF</span>
+
+    <span class="text-purple-400">ELSE IF</span> destination <span class="text-sky-400">IS EQUAL TO</span> <span class="text-amber-300">"International"</span> <span class="text-purple-400">THEN</span>
+        <span class="text-purple-400">IF</span> weight &lt;= <span class="text-emerald-400">5</span> <span class="text-purple-400">THEN</span>
+            <span class="text-purple-400">SET</span> shipping_fee = <span class="text-emerald-400">25.0</span>
+        <span class="text-purple-400">ELSE</span>
+            <span class="text-purple-400">SET</span> extra_weight = weight - <span class="text-emerald-400">5</span>
+            <span class="text-purple-400">SET</span> shipping_fee = <span class="text-emerald-400">25.0</span> + (extra_weight * <span class="text-emerald-400">5.0</span>)
+        <span class="text-purple-400">END IF</span>
+
+        <span class="text-purple-400">IF</span> is_express <span class="text-sky-400">IS TRUE</span> <span class="text-purple-400">THEN</span>
+            <span class="text-purple-400">SET</span> shipping_fee = shipping_fee + <span class="text-emerald-400">20.0</span>
+        <span class="text-purple-400">END IF</span>
+    <span class="text-purple-400">END IF</span>
+
+    <span class="text-purple-400">RETURN</span> <span class="text-blue-400">ROUND</span>(shipping_fee, <span class="text-emerald-400">2</span>)
+<span class="text-purple-400">END FUNCTION</span></code></pre>
+                    </div>
+
+                    <!-- Python Snippet -->
+                    <div id="q2-code-python" class="q2-code-block hidden font-mono text-xs bg-slate-950 border border-slate-800 rounded-xl p-4 overflow-x-auto text-slate-300">
+<pre><code><span class="text-purple-400">def</span> <span class="text-blue-400">calculate_shipping_fee</span>(destination, weight, is_express, order_total):
+    shipping_fee = <span class="text-emerald-400">0.0</span>
+
+    <span class="text-purple-400">if</span> destination == <span class="text-amber-300">"Domestic"</span>:
+        <span class="text-purple-400">if</span> order_total &gt;= <span class="text-emerald-400">100.0</span>:
+            shipping_fee = <span class="text-emerald-400">0.0</span>
+        <span class="text-purple-400">else</span>:
+            <span class="text-purple-400">if</span> weight &lt;= <span class="text-emerald-400">2.0</span>:
+                shipping_fee = <span class="text-emerald-400">5.0</span>
+            <span class="text-purple-400">else</span>:
+                extra_weight = weight - <span class="text-emerald-400">2.0</span>
+                shipping_fee = <span class="text-emerald-400">5.0</span> + (extra_weight * <span class="text-emerald-400">2.0</span>)
+
+        <span class="text-purple-400">if</span> is_express:
+            shipping_fee += <span class="text-emerald-400">8.0</span>
+
+    <span class="text-purple-400">elif</span> destination == <span class="text-amber-300">"International"</span>:
+        <span class="text-purple-400">if</span> weight &lt;= <span class="text-emerald-400">5.0</span>:
+            shipping_fee = <span class="text-emerald-400">25.0</span>
+        <span class="text-purple-400">else</span>:
+            extra_weight = weight - <span class="text-emerald-400">5.0</span>
+            shipping_fee = <span class="text-emerald-400">25.0</span> + (extra_weight * <span class="text-emerald-400">5.0</span>)
+
+        <span class="text-purple-400">if</span> is_express:
+            shipping_fee += <span class="text-emerald-400">20.0</span>
+
+    <span class="text-purple-400">return</span> <span class="text-blue-400">round</span>(shipping_fee, <span class="text-emerald-400">2</span>)</code></pre>
+                    </div>
+
+                    <!-- C++ Snippet -->
+                    <div id="q2-code-cpp" class="q2-code-block hidden font-mono text-xs bg-slate-950 border border-slate-800 rounded-xl p-4 overflow-x-auto text-slate-300">
+<pre><code><span class="text-purple-400">double</span> <span class="text-blue-400">calculateShippingFee</span>(std::string destination, <span class="text-purple-400">double</span> weight, <span class="text-purple-400">bool</span> isExpress, <span class="text-purple-400">double</span> orderTotal) {
+    <span class="text-purple-400">double</span> shippingFee = <span class="text-emerald-400">0.0</span>;
+
+    <span class="text-purple-400">if</span> (destination == <span class="text-amber-300">"Domestic"</span>) {
+        <span class="text-purple-400">if</span> (orderTotal &gt;= <span class="text-emerald-400">100.0</span>) {
+            shippingFee = <span class="text-emerald-400">0.0</span>;
+        } <span class="text-purple-400">else</span> {
+            <span class="text-purple-400">if</span> (weight &lt;= <span class="text-emerald-400">2.0</span>) {
+                shippingFee = <span class="text-emerald-400">5.0</span>;
+            } <span class="text-purple-400">else</span> {
+                shippingFee = <span class="text-emerald-400">5.0</span> + ((weight - <span class="text-emerald-400">2.0</span>) * <span class="text-emerald-400">2.0</span>);
+            }
+        }
+        <span class="text-purple-400">if</span> (isExpress) shippingFee += <span class="text-emerald-400">8.0</span>;
+
+    } <span class="text-purple-400">else if</span> (destination == <span class="text-amber-300">"International"</span>) {
+        <span class="text-purple-400">if</span> (weight &lt;= <span class="text-emerald-400">5.0</span>) {
+            shippingFee = <span class="text-emerald-400">25.0</span>;
+        } <span class="text-purple-400">else</span> {
+            shippingFee = <span class="text-emerald-400">25.0</span> + ((weight - <span class="text-emerald-400">5.0</span>) * <span class="text-emerald-400">5.0</span>);
+        }
+        <span class="text-purple-400">if</span> (isExpress) shippingFee += <span class="text-emerald-400">20.0</span>;
+    }
+
+    <span class="text-purple-400">return</span> shippingFee;
+}</code></pre>
+                    </div>
+
+                    <!-- Java Snippet -->
+                    <div id="q2-code-java" class="q2-code-block hidden font-mono text-xs bg-slate-950 border border-slate-800 rounded-xl p-4 overflow-x-auto text-slate-300">
+<pre><code><span class="text-purple-400">public static double</span> <span class="text-blue-400">calculateShippingFee</span>(String destination, <span class="text-purple-400">double</span> weight, <span class="text-purple-400">boolean</span> isExpress, <span class="text-purple-400">double</span> orderTotal) {
+    <span class="text-purple-400">double</span> shippingFee = <span class="text-emerald-400">0.0</span>;
+
+    <span class="text-purple-400">if</span> (destination.equalsIgnoreCase(<span class="text-amber-300">"Domestic"</span>)) {
+        <span class="text-purple-400">if</span> (orderTotal &gt;= <span class="text-emerald-400">100.0</span>) {
+            shippingFee = <span class="text-emerald-400">0.0</span>;
+        } <span class="text-purple-400">else</span> {
+            <span class="text-purple-400">if</span> (weight &lt;= <span class="text-emerald-400">2.0</span>) {
+                shippingFee = <span class="text-emerald-400">5.0</span>;
+            } <span class="text-purple-400">else</span> {
+                shippingFee = <span class="text-emerald-400">5.0</span> + ((weight - <span class="text-emerald-400">2.0</span>) * <span class="text-emerald-400">2.0</span>);
+            }
+        }
+        <span class="text-purple-400">if</span> (isExpress) shippingFee += <span class="text-emerald-400">8.0</span>;
+
+    } <span class="text-purple-400">else if</span> (destination.equalsIgnoreCase(<span class="text-amber-300">"International"</span>)) {
+        <span class="text-purple-400">if</span> (weight &lt;= <span class="text-emerald-400">5.0</span>) {
+            shippingFee = <span class="text-emerald-400">25.0</span>;
+        } <span class="text-purple-400">else</span> {
+            shippingFee = <span class="text-emerald-400">25.0</span> + ((weight - <span class="text-emerald-400">5.0</span>) * <span class="text-emerald-400">5.0</span>);
+        }
+        <span class="text-purple-400">if</span> (isExpress) shippingFee += <span class="text-emerald-400">20.0</span>;
+    }
+
+    <span class="text-purple-400">return</span> shippingFee;
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- QUESTION 3 CARD -->
+            <section id="q3" class="scroll-mt-24 bg-slate-800/30 border border-slate-800 rounded-3xl p-6 sm:p-8 backdrop-blur-sm relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+                <!-- Header Badge -->
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                    <div class="flex items-center gap-2">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                            Problem 03
+                        </span>
+                        <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700">
+                            Multipliers & Compound Conditions
+                        </span>
+                    </div>
+                    <span class="text-xs text-slate-400 font-mono">18-25 Lines Code Solution</span>
+                </div>
+
+                <h2 class="text-2xl font-bold text-white mb-4">CityCab Dynamic Fare & Weather Surcharge</h2>
+
+                <!-- Story Section -->
+                <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 mb-6">
+                    <h3 class="text-xs font-semibold text-purple-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        Story & Business Scenario
+                    </h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        A ride-hailing company, <em>CityCab</em>, needs to update its ride estimation logic. Depending on peak traffic hours and weather conditions (rain or snow), driver availability drops drastically. The system must automatically calculate the total ride fare accounting for distance rate tiers, weather, weekend multipliers, and long-distance incentives.
+                    </p>
+                </div>
+
+                <!-- Business Rules -->
+                <div class="mb-6">
+                    <h3 class="text-sm font-semibold text-white mb-3">Business Rules & Logic Steps:</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4">
+                            <span class="text-xs font-bold text-purple-400 block mb-1">1. Base & Weather Rate</span>
+                            <comment-tag id="4"><p class="text-xs text-slate-300 leading-relaxed">
+                                Base Fare: <strong>$3.00</strong> flat.<br>
+                                Clear: <strong>$1.50/mile</strong><br>
+                                Rainy: <strong>$2.00/mile</strong><br>
+                                Snowy: <strong>$2.50/mile</strong>
+                            </p></comment-tag id="4" text="Using paragraph tags with multiple '<br>' breaks creates unstructured text that doesn't align visually with Questions 1 and 2. Converting this section to an unordered list ('<ul>' and '<li>') improves consistency and screen-reader accessibility.
+
+Example:
+<ul class='text-xs text-slate-300 space-y-1 list-disc list-inside'>
+    <li>Base Fare: <strong>$3.00</strong> flat</li>
+    <li>Clear: <strong>$1.50/mile</strong></li>
+    <li>Rainy: <strong>$2.00/mile</strong></li>
+    <li>Snowy: <strong>$2.50/mile</strong></li>
+</ul>" type="suggestion">
+                        </div>
+                        <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4">
+                            <span class="text-xs font-bold text-amber-400 block mb-1">2. Peak Surge Multiplier</span>
+                            <comment-tag id="5"><p class="text-xs text-slate-300 leading-relaxed">
+                                Peak + Weekday: <strong>1.4x</strong> on subtotal.<br>
+                                Peak + Weekend: <strong>1.2x</strong> on subtotal.<br>
+                                Off-Peak: <strong>1.0x</strong> (No multiplier).
+                            </p></comment-tag id="5" text="Switching from line breaks to a structured list ensures the multiplier conditions are neatly stacked and visually aligned with the rest of the cards across all screen widths.
+
+Example:
+<ul class='text-xs text-slate-300 space-y-1 list-disc list-inside'>
+    <li>Peak + Weekday: <strong>1.4x</strong> on subtotal</li>
+    <li>Peak + Weekend: <strong>1.2x</strong> on subtotal</li>
+    <li>Off-Peak: <strong>1.0x</strong> (No multiplier)</li>
+</ul>" type="suggestion">
+                        </div>
+                        <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4">
+                            <span class="text-xs font-bold text-emerald-400 block mb-1">3. Long Distance Discount</span>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                If distance &gt; 20 miles:<br>
+                                Deduct flat <strong>-$5.00 off</strong> final price.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Playground -->
+                <div class="bg-slate-900/80 border border-purple-500/30 rounded-2xl p-5 mb-8">
+                    <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
+                        <h3 class="text-xs font-bold text-purple-400 uppercase tracking-wider flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            Live Logic Simulator (Try Inputs)
+                        </h3>
+                        <span class="text-xs text-slate-400">Tests logic instantly</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Distance (miles)</label>
+                            <input type="number" id="q3-miles" value="10.0" oninput="runQ3Simulator()" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Time Period</label>
+                            <select id="q3-time" onchange="runQ3Simulator()" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
+                                <option value="Peak">Peak</option>
+                                <option value="Off-Peak">Off-Peak</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Weather</label>
+                            <select id="q3-weather" onchange="runQ3Simulator()" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
+                                <option value="Rainy">Rainy</option>
+                                <option value="Snowy">Snowy</option>
+                                <option value="Clear">Clear</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Is Weekend?</label>
+                            <select id="q3-weekend" onchange="runQ3Simulator()" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
+                                <option value="false">False (Weekday)</option>
+                                <option value="true">True (Weekend)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-950 rounded-xl p-4 flex items-center justify-between border border-slate-800">
+                        <span class="text-xs text-slate-400 font-mono">Calculated Fare:</span>
+                        <div class="text-right">
+                            <span class="text-lg font-bold text-purple-400 font-mono" id="q3-output">$32.20</span>
+                            <p class="text-xs text-slate-400 font-mono" id="q3-breakdown">Base $3 + ($2/mi * 10) * 1.4x Surge</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code Solution Tabs -->
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Solution Implementation</h3>
+                        <div class="flex gap-2" id="q3-lang-tabs">
+                            <button onclick="switchLang('q3', 'pseudo')" class="q3-btn px-3 py-1 rounded-lg text-xs font-mono bg-purple-500/20 text-purple-400 border border-purple-500/30">Pseudocode</button>
+                            <button onclick="switchLang('q3', 'python')" class="q3-btn px-3 py-1 rounded-lg text-xs font-mono bg-slate-800 text-slate-400 border border-slate-700 hover:text-white">Python</button>
+                            <button onclick="switchLang('q3', 'cpp')" class="q3-btn px-3 py-1 rounded-lg text-xs font-mono bg-slate-800 text-slate-400 border border-slate-700 hover:text-white">C++</button>
+                            <button onclick="switchLang('q3', 'java')" class="q3-btn px-3 py-1 rounded-lg text-xs font-mono bg-slate-800 text-slate-400 border border-slate-700 hover:text-white">Java</button>
+                        </div>
+                    </div>
+
+                    <!-- Pseudocode Snippet -->
+                    <div id="q3-code-pseudo" class="q3-code-block font-mono text-xs bg-slate-950 border border-slate-800 rounded-xl p-4 overflow-x-auto text-slate-300">
+<pre><code><span class="text-purple-400">FUNCTION</span> <span class="text-blue-400">calculate_taxi_fare</span>(distance_miles, time_period, weather, is_weekend):
+    <span class="text-purple-400">SET</span> base_fare = <span class="text-emerald-400">3.0</span>
+
+    <span class="text-slate-500">// 1. Determine rate per mile based on weather</span>
+    <span class="text-purple-400">IF</span> weather <span class="text-sky-400">IS EQUAL TO</span> <span class="text-amber-300">"Rainy"</span> <span class="text-purple-400">THEN</span>
+        <span class="text-purple-400">SET</span> rate_per_mile = <span class="text-emerald-400">2.0</span>
+    <span class="text-purple-400">ELSE IF</span> weather <span class="text-sky-400">IS EQUAL TO</span> <span class="text-amber-300">"Snowy"</span> <span class="text-purple-400">THEN</span>
+        <span class="text-purple-400">SET</span> rate_per_mile = <span class="text-emerald-400">2.5</span>
+    <span class="text-purple-400">ELSE</span>
+        <span class="text-purple-400">SET</span> rate_per_mile = <span class="text-emerald-400">1.5</span>
+    <span class="text-purple-400">END IF</span>
+
+    <span class="text-purple-400">SET</span> subtotal = base_fare + (distance_miles * rate_per_mile)
+
+    <span class="text-slate-500">// 2. Apply surge multiplier for peak hours</span>
+    <span class="text-purple-400">IF</span> time_period <span class="text-sky-400">IS EQUAL TO</span> <span class="text-amber-300">"Peak"</span> <span class="text-purple-400">THEN</span>
+        <span class="text-purple-400">IF</span> is_weekend <span class="text-sky-400">IS FALSE</span> <span class="text-purple-400">THEN</span>
+            <span class="text-purple-400">SET</span> subtotal = subtotal * <span class="text-emerald-400">1.4</span>
+        <span class="text-purple-400">ELSE</span>
+            <span class="text-purple-400">SET</span> subtotal = subtotal * <span class="text-emerald-400">1.2</span>
+        <span class="text-purple-400">END IF</span>
+    <span class="text-purple-400">END IF</span>
+
+    <span class="text-slate-500">// 3. Apply long-distance discount</span>
+    <span class="text-purple-400">IF</span> distance_miles &gt; <span class="text-emerald-400">20</span> <span class="text-purple-400">THEN</span>
+        <span class="text-purple-400">SET</span> subtotal = subtotal - <span class="text-emerald-400">5.0</span>
+    <span class="text-purple-400">END IF</span>
+
+    <span class="text-purple-400">RETURN</span> <span class="text-blue-400">ROUND</span>(subtotal, <span class="text-emerald-400">2</span>)
+<span class="text-purple-400">END FUNCTION</span></code></pre>
+                    </div>
+
+                    <!-- Python Snippet -->
+                    <div id="q3-code-python" class="q3-code-block hidden font-mono text-xs bg-slate-950 border border-slate-800 rounded-xl p-4 overflow-x-auto text-slate-300">
+<pre><code><span class="text-purple-400">def</span> <span class="text-blue-400">calculate_taxi_fare</span>(distance_miles, time_period, weather, is_weekend):
+    base_fare = <span class="text-emerald-400">3.0</span>
+
+    <span class="text-slate-500"># 1. Determine rate per mile based on weather</span>
+    <span class="text-purple-400">if</span> weather == <span class="text-amber-300">"Rainy"</span>:
+        rate_per_mile = <span class="text-emerald-400">2.0</span>
+    <span class="text-purple-400">elif</span> weather == <span class="text-amber-300">"Snowy"</span>:
+        rate_per_mile = <span class="text-emerald-400">2.5</span>
+    <span class="text-purple-400">else</span>:
+        rate_per_mile = <span class="text-emerald-400">1.5</span>
+
+    subtotal = base_fare + (distance_miles * rate_per_mile)
+
+    <span class="text-slate-500"># 2. Apply surge multiplier for peak hours</span>
+    <span class="text-purple-400">if</span> time_period == <span class="text-amber-300">"Peak"</span>:
+        <span class="text-purple-400">if not</span> is_weekend:
+            subtotal *= <span class="text-emerald-400">1.4</span>
+        <span class="text-purple-400">else</span>:
+            subtotal *= <span class="text-emerald-400">1.2</span>
+
+    <span class="text-slate-500"># 3. Apply long-distance discount</span>
+    <span class="text-purple-400">if</span> distance_miles &gt; <span class="text-emerald-400">20.0</span>:
+        subtotal -= <span class="text-emerald-400">5.0</span>
+
+    <span class="text-purple-400">return</span> <span class="text-blue-400">round</span>(subtotal, <span class="text-emerald-400">2</span>)</code></pre>
+                    </div>
+
+                    <!-- C++ Snippet -->
+                    <div id="q3-code-cpp" class="q3-code-block hidden font-mono text-xs bg-slate-950 border border-slate-800 rounded-xl p-4 overflow-x-auto text-slate-300">
+<pre><code><span class="text-purple-400">double</span> <span class="text-blue-400">calculateTaxiFare</span>(<span class="text-purple-400">double</span> distanceMiles, std::string timePeriod, std::string weather, <span class="text-purple-400">bool</span> isWeekend) {
+    <span class="text-purple-400">double</span> baseFare = <span class="text-emerald-400">3.0</span>;
+    <span class="text-purple-400">double</span> ratePerMile = <span class="text-emerald-400">1.5</span>;
+
+    <span class="text-purple-400">if</span> (weather == <span class="text-amber-300">"Rainy"</span>) {
+        ratePerMile = <span class="text-emerald-400">2.0</span>;
+    } <span class="text-purple-400">else if</span> (weather == <span class="text-amber-300">"Snowy"</span>) {
+        ratePerMile = <span class="text-emerald-400">2.5</span>;
+    }
+
+    <span class="text-purple-400">double</span> subtotal = baseFare + (distanceMiles * ratePerMile);
+
+    <span class="text-purple-400">if</span> (timePeriod == <span class="text-amber-300">"Peak"</span>) {
+        subtotal *= (!isWeekend) ? <span class="text-emerald-400">1.4</span> : <span class="text-emerald-400">1.2</span>;
+    }
+
+    <span class="text-purple-400">if</span> (distanceMiles &gt; <span class="text-emerald-400">20.0</span>) {
+        subtotal -= <span class="text-emerald-400">5.0</span>;
+    }
+
+    <span class="text-purple-400">return</span> subtotal;
+}</code></pre>
+                    </div>
+
+                    <!-- Java Snippet -->
+                    <div id="q3-code-java" class="q3-code-block hidden font-mono text-xs bg-slate-950 border border-slate-800 rounded-xl p-4 overflow-x-auto text-slate-300">
+<pre><code><span class="text-purple-400">public static double</span> <span class="text-blue-400">calculateTaxiFare</span>(<span class="text-purple-400">double</span> distanceMiles, String timePeriod, String weather, <span class="text-purple-400">boolean</span> isWeekend) {
+    <span class="text-purple-400">double</span> baseFare = <span class="text-emerald-400">3.0</span>;
+    <span class="text-purple-400">double</span> ratePerMile = <span class="text-emerald-400">1.5</span>;
+
+    <span class="text-purple-400">if</span> (weather.equalsIgnoreCase(<span class="text-amber-300">"Rainy"</span>)) {
+        ratePerMile = <span class="text-emerald-400">2.0</span>;
+    } <span class="text-purple-400">else if</span> (weather.equalsIgnoreCase(<span class="text-amber-300">"Snowy"</span>)) {
+        ratePerMile = <span class="text-emerald-400">2.5</span>;
+    }
+
+    <span class="text-purple-400">double</span> subtotal = baseFare + (distanceMiles * ratePerMile);
+
+    <span class="text-purple-400">if</span> (timePeriod.equalsIgnoreCase(<span class="text-amber-300">"Peak"</span>)) {
+        subtotal *= (!isWeekend) ? <span class="text-emerald-400">1.4</span> : <span class="text-emerald-400">1.2</span>;
+    }
+
+    <span class="text-purple-400">if</span> (distanceMiles &gt; <span class="text-emerald-400">20.0</span>) {
+        subtotal -= <span class="text-emerald-400">5.0</span>;
+    }
+
+    <span class="text-purple-400">return</span> subtotal;
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Smooth scroll helper
+        function scrollToQuestion(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Language tab switching function
+        function switchLang(qId, lang) {
+            // Update code blocks visibility
+            const blocks = document.querySelectorAll(`.${qId}-code-block`);
+            blocks.forEach(block => block.classList.add('hidden'));
+            
+            const targetBlock = document.getElementById(`${qId}-code-${lang}`);
+            if (targetBlock) {
+                targetBlock.classList.remove('hidden');
+            }
+
+            // Update button styles
+            const btns = document.querySelectorAll(`.${qId}-btn`);
+            btns.forEach(btn => {
+                btn.className = `${qId}-btn px-3 py-1 rounded-lg text-xs font-mono bg-slate-800 text-slate-400 border border-slate-700 hover:text-white`;
+            });
+
+            const activeBtn = event.target;
+            const accentColor = qId === 'q1' ? 'sky' : (qId === 'q2' ? 'emerald' : 'purple');
+            activeBtn.className = `${qId}-btn px-3 py-1 rounded-lg text-xs font-mono bg-${accentColor}-500/20 text-${accentColor}-400 border border-${accentColor}-500/30`;
+        }
+
+        // --- Question 1 Logic Engine ---
+        function runQ1Simulator() {
+            const membership = document.getElementById('q1-membership').value;
+            const bill = parseFloat(document.getElementById('q1-bill').value) || 0;
+            const isHappyHour = document.getElementById('q1-happyhour').value === 'true';
+
+            let discountRate = 0.0;
+            let flatDiscount = 0.0;
+            let breakdownText = "";
+
+            if (membership === "VIP") {
+                if (isHappyHour) {
+                    discountRate = 0.25;
+                    breakdownText = "VIP + Happy Hour (25% Discount)";
+                } else {
+                    discountRate = 0.15;
+                    breakdownText = "VIP Standard (15% Discount)";
+                }
+            } else if (membership === "Regular") {
+                if (bill > 20) {
+                    if (isHappyHour) {
+                        discountRate = 0.15;
+                        breakdownText = "Regular > $20 + Happy Hour (15% Discount)";
+                    } else {
+                        discountRate = 0.10;
+                        breakdownText = "Regular > $20 Standard (10% Discount)";
+                    }
+                } else {
+                    discountRate = 0.0;
+                    breakdownText = "Bill ≤ $20 (No Discount)";
+                }
+            } else if (membership === "Guest") {
+                if (isHappyHour && bill > 50) {
+                    flatDiscount = 5.0;
+                    breakdownText = "Guest Happy Hour > $50 ($5.00 Flat Discount)";
+                } else {
+                    breakdownText = "Guest Standard (No Discount)";
+                }
+            }
+
+            const finalBill = (bill * (1 - discountRate)) - flatDiscount;
+            document.getElementById('q1-output').textContent = `$${Math.max(0, finalBill).toFixed(2)}`;
+            document.getElementById('q1-breakdown').textContent = breakdownText;
+        }
+
+        // --- Question 2 Logic Engine ---
+        function runQ2Simulator() {
+            const dest = document.getElementById('q2-dest').value;
+            const weight = parseFloat(document.getElementById('q2-weight').value) || 0;
+            const isExpress = document.getElementById('q2-express').value === 'true';
+            const orderTotal = parseFloat(document.getElementById('q2-total').value) || 0;
+
+            let shippingFee = 0.0;
+            let breakdownText = "";
+
+            if (dest === "Domestic") {
+                if (orderTotal >= 100) {
+                    shippingFee = 0.0;
+                    breakdownText = "Order ≥ $100 (Free Base Shipping)";
+                } else {
+                    if (weight <= 2) {
+                        shippingFee = 5.0;
+                        breakdownText = "Weight ≤ 2kg ($5.00 Base)";
+                    } else {
+                        const extraWeight = weight - 2;
+                        shippingFee = 5.0 + (extraWeight * 2.0);
+                        breakdownText = `Base $5.00 + Extra weight (${extraWeight.toFixed(1)}kg * $2)`;
+                    }
+                }
+
+                if (isExpress) {
+                    shippingFee += 8.0;
+                    breakdownText += " + Express Fee ($8.00)";
+                }
+            } else if (dest === "International") {
+                if (weight <= 5) {
+                    shippingFee = 25.0;
+                    breakdownText = "Weight ≤ 5kg ($25.00 Base)";
+                } else {
+                    const extraWeight = weight - 5;
+                    shippingFee = 25.0 + (extraWeight * 5.0);
+                    breakdownText = `Base $25.00 + Extra weight (${extraWeight.toFixed(1)}kg * $5)`;
+                }
+
+                if (isExpress) {
+                    shippingFee += 20.0;
+                    breakdownText += " + Int'l Express Fee ($20.00)";
+                }
+            }
+
+            document.getElementById('q2-output').textContent = `$${Math.max(0, shippingFee).toFixed(2)}`;
+            document.getElementById('q2-breakdown').textContent = breakdownText;
+        }
+
+        // --- Question 3 Logic Engine ---
+        function runQ3Simulator() {
+            const miles = parseFloat(document.getElementById('q3-miles').value) || 0;
+            const timePeriod = document.getElementById('q3-time').value;
+            const weather = document.getElementById('q3-weather').value;
+            const isWeekend = document.getElementById('q3-weekend').value === 'true';
+
+            const baseFare = 3.0;
+            let ratePerMile = 1.5;
+
+            if (weather === "Rainy") ratePerMile = 2.0;
+            else if (weather === "Snowy") ratePerMile = 2.5;
+
+            let subtotal = baseFare + (miles * ratePerMile);
+            let breakdownText = `Base $3 + (${miles}mi * $${ratePerMile}/mi)`;
+
+            if (timePeriod === "Peak") {
+                if (!isWeekend) {
+                    subtotal *= 1.4;
+                    breakdownText += " * 1.4x (Weekday Peak)";
+                } else {
+                    subtotal *= 1.2;
+                    breakdownText += " * 1.2x (Weekend Peak)";
+                }
+            }
+
+            if (miles > 20) {
+                subtotal -= 5.0;
+                breakdownText += " - $5 Long Distance Discount";
+            }
+
+            document.getElementById('q3-output').textContent = `$${Math.max(0, subtotal).toFixed(2)}`;
+            document.getElementById('q3-breakdown').textContent = breakdownText;
+        }
+
+        // Initialize all simulators on page load
+        window.onload = function() {
+            runQ1Simulator();
+            runQ2Simulator();
+            runQ3Simulator();
+        };
+    </script>
+</body>
+</html>
