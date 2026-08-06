@@ -13,6 +13,8 @@ public class day2 {
 
                         // two or any number power
 
+                //time complexity
+
             }
         }
     }
