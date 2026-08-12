@@ -11,8 +11,6 @@ public class day2 {
             } else {
                 System.out.println("false");
 
-                        // two or any number power
-
                 //time complexity
 
             }
