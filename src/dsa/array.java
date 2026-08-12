@@ -3,7 +3,7 @@ package dsa;
 import java.util.*;
 public class array {
     static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         // print array elements
 //        int arr [] = {10,25,7,40,15};
 //        int i = 0;
@@ -105,5 +105,45 @@ public class array {
 //        for(int i = 0;i< arr.length;i++){
 //            System.out.println(arr[i]);
 //        }
-    }
-}
+
+        // Find second largest element Array
+//        int[] arr = {10, 45, 23, 89, 12, 67};
+//        int largest,secondLargest;
+//        if (arr[0] > arr[1]) {
+//            largest = arr[0];
+//            secondLargest = arr[1];  // loop start from 2 b/c it guarantees if value is negative then upper code can handle
+//        } else {
+//            largest = arr[1];
+//            secondLargest = arr[0];
+//        }
+//        for (int i = 2; i < arr.length; i++) {
+//            if (arr[i] > largest) {
+//                secondLargest = largest;
+//                largest = arr[i];
+//
+//            } else if (arr[i] > secondLargest && arr[i] != largest) {
+//                secondLargest = arr[i];
+//            }
+//        }
+//        System.out.println("Largest: " + largest);
+//        System.out.println("Second Largest: " + secondLargest);
+
+                // Check wheater array is sorted or not
+
+//            int[] arr = {10, 20, 15, 40, 50};
+//            boolean isSort = false;
+//            for (int i =1;i < arr.length-1;i++){
+//                if ( arr[i-1] <arr[i] && arr[i] < arr[i+1]){
+//                    isSort = true;
+//                }
+//            }
+//        System.out.println(isSort);
+            }
+        }
+
+
+
+
+
+
+
