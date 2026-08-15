@@ -190,15 +190,35 @@ public class array {
 
         ///  Move all Zeros to end
 
-        int arr[] = {0, 1, 0, 3, 12};
+//        int[] arr = {0, 1, 0, 3, 12};
+//        int j = 0;
+//        for (int i = 0; i < arr.length; i++) {
+//            if (arr[i] != 0) {
+//                int temp = arr[i];
+//                arr[i] = arr[j];
+//                arr[j] = temp;
+//                j++;
+//            }
+//        }
+//        System.out.println(Arrays.toString(arr));
+
+        /// first time target element konse index pr mila
+        int[] arr = {10, 20, 30, 20, 40, 20};
+        int target = 200;
+        boolean isFound = false;
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == 0 ) {
-                arr[i] = arr[i + 1];
+            if (arr[i] == target) {
+                System.out.println(i);
+                isFound = true;
+                break;
             }
-        }           //Nhi hua
-            System.out.println(Arrays.toString(arr)); // class mein bataya tha ese print karna
+           }
+        if (!isFound) {
+            System.out.println("Not found");
         }
     }
+}
+
 
 
 
