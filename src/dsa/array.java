@@ -163,32 +163,43 @@ public class array {
 
         /// Second Smallest
 
-        int[] arr = new int[6];
-        for(int i = 0;i< arr.length;i++){
-            arr[i] = sc.nextInt();
-        }
-        int secMin = Integer.MAX_VALUE , min = 0; //badi value pakadni hai phir smallest mein dalna h
-        if(arr[0]<arr[1]){
-            min = arr[0];
-            secMin = arr[1];
-        }
-        else {
-            min = arr[1];
-            secMin = arr[0];
+//        int[] arr = new int[6];
+//        for(int i = 0;i< arr.length;i++){
+//            arr[i] = sc.nextInt();
+//        }
+//        int secMin = Integer.MAX_VALUE , min = 0; //badi value pakadni hai phir smallest mein dalna h
+//        if(arr[0]<arr[1]){
+//            min = arr[0];
+//            secMin = arr[1];
+//        }
+//        else {
+//            min = arr[1];
+//            secMin = arr[0];
+//
+//        }
+//        for(int i = 2;i< arr.length;i++){
+//            if(arr[i]<min){
+//                secMin = min;
+//                min = arr[i];
+//            }
+//            else if(arr[i]>min && arr[i]<secMin){
+//                secMin = arr[i];
+//            }
+//        }
+//        System.out.println(min + " "  +secMin);
 
-        }
-        for(int i = 2;i< arr.length;i++){
-            if(arr[i]<min){
-                secMin = min;
-                min = arr[i];
+        ///  Move all Zeros to end
+
+        int arr[] = {0, 1, 0, 3, 12};
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == 0 ) {
+                arr[i] = arr[i + 1];
             }
-            else if(arr[i]>min && arr[i]<secMin){
-                secMin = arr[i];
-            }
+        }           //Nhi hua
+            System.out.println(Arrays.toString(arr)); // class mein bataya tha ese print karna
         }
-        System.out.println(min + " "  +secMin);
     }
-}
+
 
 
 
