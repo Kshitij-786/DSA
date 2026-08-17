@@ -1,5 +1,6 @@
 package dsa;
 //BASICS OF ARRAY
+import java.lang.reflect.Array;
 import java.util.*;
 public class array {
     static void main(String[] args) {
@@ -203,21 +204,40 @@ public class array {
 //        System.out.println(Arrays.toString(arr));
 
         /// first time target element konse index pr mila
-        int[] arr = {10, 20, 30, 20, 40, 20};
-        int target = 200;
-        boolean isFound = false;
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == target) {
-                System.out.println(i);
-                isFound = true;
-                break;
-            }
-           }
-        if (!isFound) {
-            System.out.println("Not found");
+//        int[] arr = {10, 20, 30, 20, 40, 20};
+//        int target = 200;
+//        boolean isFound = false;
+//        for (int i = 0; i < arr.length; i++) {
+//            if (arr[i] == target) {
+//                System.out.println(i);
+//                isFound = true;
+//                break;
+//            }
+//           }
+//        if (!isFound) {
+//            System.out.println("Not found");
+//        }
+
+            /// Left Rotate a Array by 1
+//        int[] arr = {10, 20, 30, 40, 50};
+//        int temp = arr[0];
+//        for(int i = 1; i<arr.length;i++){
+//            arr[i-1] = arr[i];
+//        }
+//           arr[arr.length-1] =  temp;
+//        System.out.println(Arrays.toString(arr));
+
+        /// Right Rotate a Array by 1
+        int[] arr = {10, 20, 30, 40, 50};
+        int temp = arr[arr.length-1];
+        for(int i = arr.length-2;i>-1;i--){
+            arr[i+1] = arr[i];      //loop understanding
         }
+        arr[0] = temp;
+        System.out.println(Arrays.toString(arr));
     }
 }
+
 
 
 
