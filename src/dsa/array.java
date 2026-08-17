@@ -228,13 +228,47 @@ public class array {
 //        System.out.println(Arrays.toString(arr));
 
         /// Right Rotate a Array by 1
-        int[] arr = {10, 20, 30, 40, 50};
-        int temp = arr[arr.length-1];
-        for(int i = arr.length-2;i>-1;i--){
-            arr[i+1] = arr[i];      //loop understanding
-        }
-        arr[0] = temp;
-        System.out.println(Arrays.toString(arr));
+//        int[] arr = {10, 20, 30, 40, 50};
+//        int temp = arr[arr.length-1];
+//        for(int i = arr.length-2;i>-1;i--){
+//            arr[i+1] = arr[i];      //loop understanding
+//        }
+//        arr[0] = temp;
+//        System.out.println(Arrays.toString(arr));
+
+        /// Print first Duplicate element
+//        int[] arr = {10, 20, 30, 20, 40, 30, 50};
+//        boolean isFound = false;
+//        for (int i = 0;i<arr.length;i++){
+//            for(int j = i+1;j< arr.length;j++){
+//                if(arr[i] == arr[j]){
+//                isFound = true;
+//               break;
+//                }
+//            }
+//        if(isFound){
+//            System.out.println(arr[i]);
+//            break;
+//        }
+//        }
+
+        /// Count Duplicate Element
+
+//        int arr[] ={10,20,30,20,40,30,50};
+//        int count = 0;
+//        for(int i = 0;i< arr.length;i++){
+//            boolean isFound = false;
+//            for(int j = i+1;j<arr.length;j++){
+//                if(arr[i] == arr[j]){
+//                        isFound= true;
+//                        break;
+//                }
+//            }
+//            if (isFound){
+//                count++;
+//            }
+//        }
+//        System.out.println(count);
     }
 }
 
