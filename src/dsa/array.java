@@ -269,9 +269,52 @@ public class array {
 //            }
 //        }
 //        System.out.println(count);
-    }
-}
 
+        /// first occurennce of target elemnet index
+//        int[] arr = {12, 5, 8, 5, 20, 12, 7};
+//        int target = sc.nextInt();
+//        int count = 0;
+//        for(int i = 0;i<arr.length;i++){
+//            if(arr[i] == target){
+//                count++;
+//            }
+//            if(count == 2){
+//                System.out.println(i);
+//                break;
+//            }
+//            }
+//        if(count<2){
+//            System.out.println("Not Found");
+//        }
+             ///  Missing value of Array
+//        int[] arr = {1, 2, 3, 5,4,7};
+//        int sum = 0;
+//        int n = arr.length+1;
+//        int expSum = n*(n+1)/2;  // Formula
+//        for(int i = 0;i<arr.length;i++){
+//            sum += arr[i];
+//        }
+//            int missing = expSum - sum;
+//        System.out.println(missing);
+
+        ///Find Pair with Given Sum
+//        int[] arr = {10, 5, 20, 15, 8, 12};
+//        int target = sc.nextInt();
+//        boolean isFound = false;
+//        for(int i = 0;i<arr.length;i++){
+//            for(int j = i+1;j< arr.length;j++){  // hme differnet pair chayiye only
+//                if(arr[i] + arr[j] == target){
+//                    isFound = true;
+//                    System.out.println("Pair = "+ arr[i] +  " , " + arr[j]);
+//
+//                }
+//            }
+//            if(isFound){
+//                continue; // to print all distinct pair
+//            }
+//        }
+        }
+    }
 
 
 
