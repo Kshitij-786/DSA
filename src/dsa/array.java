@@ -310,7 +310,7 @@ public class array {
 //                }
 //            }
 //            if(isFound){
-//                continue; // to print all distinct pair
+//                continue; // to print all distinct Pair
 //            }
 //        }
         }
