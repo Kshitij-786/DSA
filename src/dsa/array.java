@@ -313,6 +313,22 @@ public class array {
 //                continue; // to print all distinct Pair
 //            }
 //        }
+
+         /// Print First Non-Repeating Element
+        int[] arr = {4, 5, 1, 2, 1, 4, 5, 2, 9};
+            for(int i = 0;i< arr.length;i++){
+                boolean isFound = false;
+                for(int j = 0;j<arr.length;j++){
+                    if(i!=j && arr[i] == arr[j]){
+                        isFound = true;
+                        break;
+                    }
+                }
+                if(isFound == false){
+                    System.out.println(arr[i]);
+                    break;
+                }
+            }
         }
     }
 
