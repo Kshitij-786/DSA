@@ -14,6 +14,6 @@ public class java_commonly_used_Method {
 ////        str = str.substring(0,str.length()-1);
 ////        str = str.substring(0,str.length()-1);
 ////        str = str.substring(0,str.length()-1);
-//        System.out.println(str);
+//        System.out.println(str);SS
     }
 }
