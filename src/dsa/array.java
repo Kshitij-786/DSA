@@ -218,7 +218,7 @@ public class array {
 //            System.out.println("Not found");
 //        }
 
-            /// Left Rotate a Array by 1
+        /// Left Rotate a Array by 1
 //        int[] arr = {10, 20, 30, 40, 50};
 //        int temp = arr[0];
 //        for(int i = 1; i<arr.length;i++){
@@ -286,7 +286,7 @@ public class array {
 //        if(count<2){
 //            System.out.println("Not Found");
 //        }
-             ///  Missing value of Array
+        ///  Missing value of Array
 //        int[] arr = {1, 2, 3, 5,4,7};
 //        int sum = 0;
 //        int n = arr.length+1;
@@ -314,28 +314,61 @@ public class array {
 //            }
 //        }
 
-         /// Print First Non-Repeating Element
-        int[] arr = {4, 5, 1, 2, 1, 4, 5, 2, 9};
-            for(int i = 0;i< arr.length;i++){
-                boolean isFound = false;
-                for(int j = 0;j<arr.length;j++){
-                    if(i!=j && arr[i] == arr[j]){
-                        isFound = true;
-                        break;
-                    }
-                }
-                if(isFound == false){
-                    System.out.println(arr[i]);
-                    break;
-                }
-            }
-        }
+        /// Print First Non-Repeating Element
+//        int[] arr = {4, 5, 1, 2, 1, 4, 5, 2, 9};
+//            for(int i = 0;i< arr.length;i++){
+//                boolean isFound = false;
+//                for(int j = 0;j<arr.length;j++){
+//                    if(i!=j && arr[i] == arr[j]){
+//                        isFound = true;
+//                        break;
+//                    }
+//                }
+//                if(isFound == false){
+//                    System.out.println(arr[i]);
+//                    break;
+//                }
+//            }
+
+        /// Sec max element in array
+
+//        int[] arr = {10, 5, 200, 80, 20, 15};
+//        int max = 0, sec = Integer.MIN_VALUE;
+//        int temp = 0;
+//        for (int i = 0; i < arr.length; i++) {
+//            if (arr[i] >max){
+//                sec = max;
+//                max = arr[i];
+//            } else if (arr[i] < max && arr[i] > sec){
+//                sec = arr[i];
+//            }
+//            else continue;  // not need automatically iterated
+//        }
+//        System.out.println(sec);
+
+        /// Frequency of Elements---not proper
+//        int[] arr = {1,2,3,1,4};
+//        for(int i = 0;i< arr.length;i++){
+//        boolean dupFound = false;
+//        int c = 0;
+//            for(int j = 0;j<i;j++){
+//                if(arr[i] == arr[j]){
+//                    dupFound = true;
+//                    break;
+//                    }
+//                }
+//            if(dupFound){
+//                continue;
+//            }
+//            for(int j = 0;j<arr.length;j++){
+//                if(arr[i] == arr[j]){
+//                    c++;
+//                }
+//            }
+//            System.out.println(arr[i] +" = " + c);
+//        }
     }
-
-
-
-
-
+}
 
 
 
