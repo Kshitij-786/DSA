@@ -37,7 +37,7 @@ public class temp {
             } else if (target < arr[mid]) {
                 right = mid - 1;
             }
-            }
+        }
             if (!isFound) {
                 System.out.println("Not Found");
         }
