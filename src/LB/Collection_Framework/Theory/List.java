@@ -1,4 +1,4 @@
-package LB.Collection_Framework;
+package LB.Collection_Framework.Theory;
 
 import java.util.*;
 
