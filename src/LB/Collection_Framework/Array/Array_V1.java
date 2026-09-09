@@ -23,12 +23,12 @@ public class Array_V1 {
 
         /// Search an element in array --> Linear Search - Boolean req --> TC = O(n) & SC = O(1)
        /* int arr[] = {1,2,3,4,50,6};
-        boolean isFound = false;
+        boolean isFound;
         int target = sc.nextInt();
         for(int i = 0;i<arr.length;i++){
             if(arr[i] == target){
-                System.out.println("Found at index: "+ i);
                 isFound = true;
+                System.out.println("Found at index: "+ i);
                 break;
             }
             }
