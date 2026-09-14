@@ -17,7 +17,7 @@ public class HwQues {
             System.out.println(arr[i]);
         }*/
 
-        /// Print Common elements of Two Array
+        /// Print Common elements of Two Array --> TC = O(n.m) & SC = O(min(n,m))
       /*  int arr[] = {10,2,3,4,5,6}; //index does not matter
         int arrr[] = {4,5,6,7,8,9,10};
         ArrayList<Integer> list = new ArrayList<>();
@@ -31,8 +31,8 @@ public class HwQues {
         System.out.println(list);*/
 
 
-        ///Shift Array by k position
-        int k = sc.nextInt();
+        ///Shift Array by k position --> TC = O(k.n) & SC = O(n)
+        /*int k = sc.nextInt();
         ArrayList<Integer> list = new ArrayList<>();
             int arr[] = {1, 2, 3, 4, 5, 6};
             int n = arr.length;
@@ -46,6 +46,6 @@ public class HwQues {
             for (int i = 0; i < n; i++) {
                 list.add(arr[i]);
             }
-        System.out.println(list);
+        System.out.println(list);*/
     }
 }
