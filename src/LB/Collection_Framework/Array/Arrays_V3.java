@@ -29,7 +29,7 @@ public class Arrays_V3 {
             System.out.print(" " + arr[i]);
         }*/
 
-        /// Missing Number --> XOR method sajna h abhii
+        /// Missing Number --> XOR method sajna h abhii --> TC = O(n) & SC = O(1)
         //distinct elements
       /*  int arr[] = {1,4,5,3,6};
         int missing = 0 ,n = arr.length;
@@ -41,7 +41,7 @@ public class Arrays_V3 {
         }
         System.out.println(missing);*/
 
-        /// find unique element in array --> XOR
+        /// find unique element in array --> XOR --> TC = O(n) & SC = O(1)
         // every element occur 2 times but one no occurs 1 times
        /* int arr[] = {1, 0, 0, 1, 0, 1, 1, 0, 4,1, 0, 1, 0};
         int u = 0;
