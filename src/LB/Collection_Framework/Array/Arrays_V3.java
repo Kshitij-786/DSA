@@ -31,12 +31,13 @@ public class Arrays_V3 {
 
         /// Missing Number --> XOR method sajna h abhii --> TC = O(n) & SC = O(1)
         //distinct elements
-      /*  int arr[] = {1,4,5,3,6};
+
+        /*int arr[] = {1,4,5,3,6};
         int missing = 0 ,n = arr.length;
-        for (int i = 1;i<n;i++){
+        for (int i = 0;i<n;i++){
             missing = missing ^ arr[i];
         }
-        for (int i = 0;i<n;i++){
+        for (int i = 0;i<n+1;i++){
             missing = missing ^ i;
         }
         System.out.println(missing);*/
